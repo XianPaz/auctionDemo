@@ -1,6 +1,6 @@
 # Auction Demo
-Basic auction demo for learning purposes in Solidity for Ethereum.
-This contract aims to handle an auction from its start to its end.
+* Basic auction demo for learning purposes in Solidity for Ethereum.
+* This contract aims to handle an auction from its start to its end.
 
 ### Data Structures
 * Bid: Holds all data related to a bid. The address of a bidder, amount of bid, timestamp of bid and a flag indicating if it's has been claimed or not.
@@ -27,37 +27,36 @@ This occurs when contract is deployed. This auction accepts some fixed attribute
 The following functions are applicable.
 
 ##### Bid
-Purpose: Accepts a bid, anyone can bid
-Signature: `function bid()`
-Parameters: none
+* Purpose: Accepts a bid, anyone can bid
+* Signature: `function bid()`
 
 ##### Claim My Bid
-Purpose: Allow bidders to claim refundable bids when auction is still open, except for winning bid
-Signature: `function claimMyBid()`
+* Purpose: Allow bidders to claim refundable bids when auction is still open, except for winning bid
+* Signature: `function claimMyBid()`
 
 ##### Get Auction Progress
-Purpose: Show auction start time, end time, remaining time, highest bidder, amount of higher bid and timestamp of higher bid
-Signature: function getAuctionProgress()
+* Purpose: Show auction start time, end time, remaining time, highest bidder, amount of higher bid and timestamp of higher bid
+* Signature: function getAuctionProgress()
 
 ##### Get Winner Bid
-Purpose: Show highest bidder, amount of higher bid and timestamp of higher bid
-Signature: `function getWinnerBid()`
+* Purpose: Show highest bidder, amount of higher bid and timestamp of higher bid
+* Signature: `function getWinnerBid()`
 
 ##### Show Bidders
-Purpose: Show all bidders (addresses, amounts and timestamps)
-Signature: `function showBidders()`
+* Purpose: Show all bidders (addresses, amounts and timestamps)
+* Signature: `function showBidders()`
 
 ##### Show Bidders Data (privileged)
-Purpose: Show all bidders (addresses, amounts, timestamps, claimed flag)
-Signature: `function showBidders()`
+* Purpose: Show all bidders (addresses, amounts, timestamps, claimed flag)
+* Signature: `function showBidders()`
 
 ##### Close Auction (privileged)
-Purpose: Owner could close auction, refunding all non-winning bids keeping a fee
-Signature: `function closeAuction()`
+* Purpose: Owner could close auction, refunding all non-winning bids keeping a fee
+* Signature: `function closeAuction()`
 
 #### Auction is Closed
 
 ##### Withdraw (privileged)
-Purpose: Owner get all remaining funds from the contract
-Signature: `function withdraw()`
+* Purpose: Owner get all remaining funds from the contract
+* Signature: `function withdraw()`
 
