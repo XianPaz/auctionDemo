@@ -1,5 +1,7 @@
 ## Items de Primer Evaluación
 
+Se describen los cambios hechos por cada item de la evaluación. Estos cambios están actualizados en una nueva versión del contrato. El original es v100 y el nuevo contrato es v101.
+
 1) Hacer withdraw parcial
 La función claimMyBid hace eso.
 Ejecutada desde un usuario que hizo bids sin tener el bid ganador, le devuelve todos los fondos de cada bid que hizo.
@@ -22,3 +24,10 @@ También declaré la variable que uso en los loops para recorrer los bids afuera
 No encontré casos. No hice cambios.
 
 6) Documentacion del codigo. funciones=> que hacen, parametros y returnos.
+Se agrega a las funciones el propósito, su signature, parámetros y lo que devuelven.
+Se agrega documentación de estructuras y constantes.
+
+7) Documentacion y codigo en ingles
+Documentación y código ya en inglés. Lo modificado en los items de la evalaución se hacen en inglés.
+
+9) 
