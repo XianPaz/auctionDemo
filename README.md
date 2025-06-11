@@ -5,7 +5,7 @@
 ### Data Structures
 
 * Bid: Holds all data related to a single bid.
-`
+```
     // Bid related data
     struct Bid {
         address bidder;     // the bidder
@@ -13,7 +13,7 @@
         uint time;          // timestamp when this bid is made
         bool claimed;       // whether this bid has been claimed or not by the user
     }
-`
+```
 
 * AuctionData: all data of the auction. Who is the owner, when started, when finished, what bids its have, what claims has been done, if it is open or not.
 `
