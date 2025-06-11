@@ -18,7 +18,6 @@ No encontré cambios para hacer.
 
 4) No calcular longitudes dentro del for
 Hice el cambio en el loop de claimMyBid() y refundAll()
-También declaré la variable que uso en los loops para recorrer los bids afuera del loop y sólo hice la asignación adentro del loop. Cambio en las mismas dos funciones.
 
 5) Nunca hacer más de una lectura y una escritura a una variable de estado en una funcion
 No encontré casos. No hice cambios.
@@ -30,4 +29,8 @@ Se agrega documentación de estructuras y constantes.
 7) Documentacion y codigo en ingles
 Documentación y código ya en inglés. Lo modificado en los items de la evalaución se hacen en inglés.
 
-9) 
+9) Funcion de recuperacion de eth de emergencia
+La función withdraw() permitía sacar todo el balance luego de finalizado el auction. Quedó modificada para que pueda ejecutarse en cualquier momento.
+
+10) Usar variables sucias en vez de variables limpias (declararlas fuera del bucles)
+En las funciones claimMyBid() y refundAll() declaré la variable que uso en los loops para recorrer los bids afuera del loop y sólo hice la asignación adentro del loop.
