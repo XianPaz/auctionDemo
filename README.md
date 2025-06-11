@@ -4,7 +4,7 @@
 
 ### Data Structures
 
-* Bid: Holds all data related to a single bid.
+**Bid**: Holds all data related to a single bid.
 ```
     // Bid related data
     struct Bid {
@@ -15,7 +15,7 @@
     }
 ```
 
-* AuctionData: all data of the auction. Who is the owner, when started, when finished, what bids its have, what claims has been done, if it is open or not.
+**AuctionData**: all data of the auction. Who is the owner, when started, when finished, what bids its have, what claims has been done, if it is open or not.
 ```
     // Auction data structure
     struct AuctionData {
@@ -30,7 +30,7 @@
     }
 ```
 
-* Constants: all fixed attributes used when the auction is created.
+**Constants**: all fixed attributes used when the auction is created.
 ```
     uint public constant MINIMUM_BID = 1 ether;                // minimum bid amount
     uint public constant AUCTION_DURATION = 1 days;            // auction duration
@@ -41,7 +41,7 @@
 
 ### Events
 
-* AuctionStart: indicates the auction is started. Is issued once contract is deployed.
+**AuctionStart**: indicates the auction is started. Is issued once contract is deployed.
 ```
     event AuctionStart(
         address indexed owner,
@@ -50,7 +50,7 @@
     );
 ```
 
-* AuctionClosed: shows when an auction is closed. Is triggered by the owner anytime.
+**AuctionClosed**: shows when an auction is closed. Is triggered by the owner anytime.
 ```
     event AuctionClosed(
         address winner,
@@ -58,7 +58,7 @@
     );
 ```
 
-* BidClaimed: issued by any bidder when he/she decides to claim their funds.
+**BidClaimed**: issued by any bidder when he/she decides to claim their funds.
 ```
     event BidClaimed(
         address indexed bidder, 
@@ -78,41 +78,68 @@ This occurs when contract is deployed. This auction accepts some fixed attribute
   c) When auction is closed and non-winning bids has not claimed their funds, those funds are refunded but keeping a fee of 2%
   d) A window of 10 min is set, if a bid is accepted and auction is finalizing befor 10 min, auction ending is extended by 10 more minutes.
   e) A bid is accepted if is greater than maximum bid and exceeds a rate of 5%
+All this setup is done in constructor.
 
 #### Auction is Open
-The following functions are applicable.
+The following functions are applicable:
 
-##### Bid
+##### bid
 * Purpose: Accepts a bid, anyone can bid
-* Signature: `function bid()`
+* Signature: `function bid() external payable isAuctionOpen`
+* Parameters: None
+* Returns: None
 
-##### Claim My Bid
+##### claimMyBid
 * Purpose: Allow bidders to claim refundable bids when auction is still open, except for winning bid
-* Signature: `function claimMyBid()`
+* Signature: `function claimMyBid() external isAuctionOpen`
+* Parameters: None
+* Returns: None
 
-##### Get Auction Progress
-* Purpose: Show auction start time, end time, remaining time, highest bidder, amount of higher bid and timestamp of higher bid
-* Signature: function getAuctionProgress()
+##### getAuctionProgress
+* Purpose: Show auction times and winning bid
+* Signature: `function getAuctionProgress() external view`
+* Parametes: None
+* Returns:
+  * uint auctionStartTime: auction's start time
+  * uint auctionEndTime: auction's end time
+  * uint timeRemaining: auction's remaining time
+  * address highestBidder: address of winner bidder
+  * uint highestBidAmount: amount of winner bidder
+  * uint highestBidTime: timestamp when winner bid was accepted
 
-##### Get Winner Bid
+##### getWinnerBid
 * Purpose: Show highest bidder, amount of higher bid and timestamp of higher bid
-* Signature: `function getWinnerBid()`
+* Signature: `function getWinnerBid() external view isAuctionOpen`
+* Parameters: None
+* Returns: None
 
-##### Show Bidders
+##### ShowBidders
 * Purpose: Show all bidders (addresses, amounts and timestamps)
-* Signature: `function showBidders()`
+* Signature: `function showBidders() external view isAuctionOpen`
+* Parameters: None
+* Returns:
+  * bidders: array of bidder's addesses
+  * amounts: array of bidder's amounts
+  * times: array of bidder's timestamps when the bid was accepted
 
-##### Show Bidders Data (privileged)
+##### ShowBiddersData (privileged)
 * Purpose: Show all bidders (addresses, amounts, timestamps, claimed flag)
-* Signature: `function showBidders()`
+* Signature: `function showBiddersData() external view isOwner isAuctionOpen`
+* Parameters: None
+* Returns:
+  * bidHistory: array of bid structure which holds address, amount, timestamp and claimed flag for all bidders
 
 ##### Close Auction (privileged)
-* Purpose: Owner could close auction, refunding all non-winning bids keeping a fee
-* Signature: `function closeAuction()`
+* Purpose: Owner could close auction, refunding all non-winning bids keeping a fee whenever he/she wants (in an open or closed auction)
+* Signature: `function closeAuction() external isOwner`
+* Parameters: None
+* Returns: None
 
 #### Auction is Closed
 
 ##### Withdraw (privileged)
-* Purpose: Owner get all remaining funds from the contract
-* Signature: `function withdraw()`
+* Purpose: Owner get all remaining funds from the contract (winning bid amount plus fees of refunded non-winning bids
+* Signature: `function withdraw() external isOwner isAuctionClosed`
+* Parameters: None
+* Returns: None
 
