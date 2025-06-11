@@ -16,7 +16,7 @@
 ```
 
 * AuctionData: all data of the auction. Who is the owner, when started, when finished, what bids its have, what claims has been done, if it is open or not.
-`
+```
     // Auction data structure
     struct AuctionData {
         address owner;        // the one who creates the auction
@@ -28,19 +28,43 @@
         Bid highestBid;       // the bid with the highest amount
         Bid[] bidHistory;     // all the bid history of this auction
     }
-`
+```
 
 * Constants: all fixed attributes used when the auction is created.
-`
+```
     uint public constant MINIMUM_BID = 1 ether;                // minimum bid amount
     uint public constant AUCTION_DURATION = 1 days;            // auction duration
     uint public constant AUCTION_FEE = 2;                      // fee % collected when refunding non-winners bids
     uint public constant EXTENSION_TIME_WINDOW = 10 minutes;   // time added when bid occurs near auction end
     uint public constant MIN_BID_INCREMENT_PCT = 5;            // required % increase over highest bid
-`
+```
 
 ### Events
-There are events issued when auction starts, a bid is accepted, auction is finished and a bid is claimed.
+
+* AuctionStart: indicates the auction is started. Is issued once contract is deployed.
+```
+    event AuctionStart(
+        address indexed owner,
+        uint startTime,
+        uint endTime
+    );
+```
+
+* AuctionClosed: shows when an auction is closed. Is triggered by the owner anytime.
+```
+    event AuctionClosed(
+        address winner,
+        uint amount
+    );
+```
+
+* BidClaimed: issued by any bidder when he/she decides to claim their funds.
+```
+    event BidClaimed(
+        address indexed bidder, 
+        uint refundedAmount
+    );
+```
 
 ### Modifiers
 Modifiers exists to check is an auction is active or not and if the caller is the owner or not.
