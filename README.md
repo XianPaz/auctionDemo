@@ -73,11 +73,13 @@ Modifiers exists to check is an auction is active or not and if the caller is th
 
 #### Auction is Created
 This occurs when contract is deployed. This auction accepts some fixed attributes:
+
   a) Bids has a minimum of 1 ETH
   b) Auction last for 1 day
   c) When auction is closed and non-winning bids has not claimed their funds, those funds are refunded but keeping a fee of 2%
   d) A window of 10 min is set, if a bid is accepted and auction is finalizing befor 10 min, auction ending is extended by 10 more minutes.
   e) A bid is accepted if is greater than maximum bid and exceeds a rate of 5%
+
 All this setup is done in constructor.
 
 #### Auction is Open
