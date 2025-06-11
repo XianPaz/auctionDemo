@@ -83,20 +83,17 @@ All this setup is done in constructor.
 #### Auction is Open
 The following functions are applicable:
 
-##### bid
-* Purpose: Accepts a bid, anyone can bid
+**bid**: Accepts a bid, anyone can bid
 * Signature: `function bid() external payable isAuctionOpen`
 * Parameters: None
 * Returns: None
 
-##### claimMyBid
-* Purpose: Allow bidders to claim refundable bids when auction is still open, except for winning bid
+**claimMyBid**: Allow bidders to claim refundable bids when auction is still open, except for winning bid
 * Signature: `function claimMyBid() external isAuctionOpen`
 * Parameters: None
 * Returns: None
 
-##### getAuctionProgress
-* Purpose: Show auction times and winning bid
+**getAuctionProgress**: Show auction times and winning bid
 * Signature: `function getAuctionProgress() external view`
 * Parametes: None
 * Returns:
@@ -107,14 +104,12 @@ The following functions are applicable:
   * uint highestBidAmount: amount of winner bidder
   * uint highestBidTime: timestamp when winner bid was accepted
 
-##### getWinnerBid
-* Purpose: Show highest bidder, amount of higher bid and timestamp of higher bid
+**getWinnerBid**: Show highest bidder, amount of higher bid and timestamp of higher bid
 * Signature: `function getWinnerBid() external view isAuctionOpen`
 * Parameters: None
 * Returns: None
 
-##### ShowBidders
-* Purpose: Show all bidders (addresses, amounts and timestamps)
+**showBidders**: Show all bidders (addresses, amounts and timestamps)
 * Signature: `function showBidders() external view isAuctionOpen`
 * Parameters: None
 * Returns:
@@ -122,24 +117,20 @@ The following functions are applicable:
   * amounts: array of bidder's amounts
   * times: array of bidder's timestamps when the bid was accepted
 
-##### ShowBiddersData (privileged)
-* Purpose: Show all bidders (addresses, amounts, timestamps, claimed flag)
+**showBiddersData (privileged)**: Show all bidders (addresses, amounts, timestamps, claimed flag)
 * Signature: `function showBiddersData() external view isOwner isAuctionOpen`
 * Parameters: None
 * Returns:
   * bidHistory: array of bid structure which holds address, amount, timestamp and claimed flag for all bidders
 
-##### Close Auction (privileged)
-* Purpose: Owner could close auction, refunding all non-winning bids keeping a fee whenever he/she wants (in an open or closed auction)
+**closeAuction (privileged)**: Owner could close auction, refunding all non-winning bids keeping a fee whenever he/she wants (in an open or closed auction)
 * Signature: `function closeAuction() external isOwner`
 * Parameters: None
 * Returns: None
 
 #### Auction is Closed
 
-##### Withdraw (privileged)
-* Purpose: Owner get all remaining funds from the contract (winning bid amount plus fees of refunded non-winning bids
+**Withdraw (privileged)**: Owner get all remaining funds from the contract (winning bid amount plus fees of refunded non-winning bids
 * Signature: `function withdraw() external isOwner isAuctionClosed`
 * Parameters: None
 * Returns: None
-
